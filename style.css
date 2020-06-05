@@ -1,0 +1,564 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Righteous&display=swap');
+
+/* 
+    font-family: 'Lato', sans-serif;
+    font-family: 'Righteous', cursive;
+*/
+
+*, *::before, *::after { box-sizing: border-box;}
+
+/* General Styling */
+
+body, html { 
+    margin: 0; 
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+img {
+    max-width: 100%;
+}
+
+.container {
+    width: 80%;
+    max-width: 1024px;
+    margin: 0 auto;
+}
+
+li {
+    list-style: none;
+}
+
+/* Typography */
+
+h1, h2, h3, h4, h5 {
+    font-family: 'Righteous', cursive;
+    margin: 0;
+    padding-bottom: 1em;
+}
+
+p, li, a, span, input {
+    font-family: 'Lato', sans-serif;
+}
+
+#hero li {
+    font-size: .9em;
+}
+
+#hero-sub-menu {
+    font-size: .8em;
+}
+
+#quote-gallery {
+    font-size: .85em;
+    font-style: italic;
+    text-align: right;
+}
+
+/* Specific styling */
+
+/* Hero Image */
+
+#hero {
+    background-image: url("./images/hector-bermudez-unsplash-medium-screen-greyscale.png");
+    height: 100vh;
+    min-height: 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-color: #464646;
+    background-color: black;
+    background-attachment: fixed;
+    color: white;
+}
+
+/* Nav Button */
+
+.toggle-div {
+    text-align: center;
+    left: 0;
+    position: absolute;
+    width: 100%;
+    background-color: rgba(63, 63, 63, 0.5);
+    padding: .5em 0;
+    height: auto;
+}
+
+.toggle-div > img {
+    z-index: 2;
+    position: relative;
+    cursor: pointer;
+}
+
+#hero-image {
+    display: flex;
+    justify-content: center;
+}
+
+#hero-image > img {
+    margin: 35vh 0;
+    width: 50%;
+    max-width: 300px;
+}
+
+/* Left Nav */
+
+#hero-sub-menu,
+#hero-nav > ul {
+    position: absolute;
+    width: 100%;
+    padding-top: 1em;
+}
+
+#hero-nav > ul {
+    left: 0;
+    top: 4.4em;
+    margin:0;
+    max-width: 100px;
+    background-color: rgba(63, 63, 63, .5);
+    z-index: 3;
+    padding-left: 1em;
+    padding-bottom: 2em;
+}
+
+#hero-nav a {
+    color: white;
+    text-decoration: none;
+}
+
+#hero-nav > ul > li {
+    cursor: pointer;
+}
+
+#hero-nav > ul > li + li {
+    margin-top: 1em;
+}
+
+#hero-nav li:hover,
+#hero-nav li:focus {
+    opacity: .6;
+}
+
+.transform-show {
+    transform-origin: left;
+    transform: scale(1, 1) !important;
+    opacity: 1;
+    height: auto;
+    transition: transform 400ms ease-in-out, opacity 400ms;
+
+}
+
+.transform-hide {
+    transform-origin: left;
+    transform: scale(0, 1) !important;
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+    transition: transform 400ms ease-in-out, opacity 400ms;
+}
+
+/* Hero's Bottom content */
+
+#hero-sub-menu {
+    left: 0;
+    bottom: 0;
+    padding: 1em 0;
+    background-color: rgba(63, 63, 63, .5);
+}
+
+#hero-sub-menu h3 {
+    padding-top: .5em;
+    padding-bottom: 0 !important;
+}
+
+/* Quoting area */
+
+#quote-gallery {
+    margin-top: 2em;
+    width: 85%;
+    margin-left: auto;
+}
+
+#quote-gallery > p {
+    margin-bottom: .2em;
+}
+
+#quote-gallery > p::before,
+#quote-gallery > p::after{
+    content: open-quote;
+}
+
+/* Quote animation */
+
+.horizTranslate {
+    transform: translateX(-200%);
+    transition: transform ease 550ms;
+}
+
+/* Introduction */
+
+#introduction {
+    background-color: #EFEFEF;
+    padding: 3em 0;
+}
+
+#introduction h2 {
+    text-align: center;
+}
+
+.content-wrapper > div {
+    display: flex;
+}
+
+.content-wrapper p {
+    margin-left: 1em;
+}
+
+.content-wrapper i {
+    text-align: center;
+    align-self: center;
+    margin-right: 3%;
+}
+
+#introduction i {
+    width: 20%;
+}
+
+#introduction p {
+    width: 75%;
+}
+
+.introduction-bands::after,
+.introduction-albums::after,
+.introduction-search::after {
+    display: block;
+    font-size: .45em;
+    font-weight: 600;
+    font-style: italic;
+    margin-top: 1em;
+    word-wrap: break-word;
+    color: black;
+    font-family: 'Lato', sans-serif;
+}
+
+
+.introduction-bands::after { content: 'The best bands'; }
+.introduction-albums::after { content: 'The best albums'; }
+.introduction-search::after { content: 'Search Functionality'; }
+
+/* Albums */
+
+#albums,
+#albums-content {
+    padding-top: 1.5em;
+}
+
+#albums > div > h2 {
+    padding-bottom: .5em;
+}
+
+#albums > div > h2,
+#albums > div > p, 
+#albums-icons > i,
+#artists-icons {
+    text-align: center;
+}
+
+#albums-icons,
+#albums-images,
+#artists-icons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+#albums-icons i,
+#albums-images img,
+#artists-images img,
+#artists-icons i {
+    margin-right: 1em;
+    margin-bottom: .8em;
+}
+
+#albums-icons i,
+#artists-icons i{
+    /* margin-bottom: 1.5em; */
+    text-align: center;
+    font-size: 1.8em;
+    transition: transform 300ms;
+}
+
+#albums-icons > i:hover,
+#artists-icons > i:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+#albums i::after,
+#artists-icons i::after {
+    content: attr(data-type);
+    display: block;
+    font-size: .4em;
+    font-weight: 600;
+    font-style: italic;
+    word-wrap: break-word;
+    color: black;
+    font-family: 'Lato', sans-serif;
+    margin-top: 1em;
+}
+
+
+/* Image Shadow */
+#albums-images img,
+#artists-images img {
+    width: 95px;
+    height: 95px;
+    margin-bottom: .8em;
+    font-size: 1.8em;
+    box-shadow: 2px 4px 10px rgba(63, 63, 63, 0.4);
+    transition: transform 300ms, box-shadow 300ms;
+}
+
+#albums-images img:hover,
+#artists-images img:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+    box-shadow: 2x 4px 50px rgba(63, 63, 63, 0.4);
+}
+
+.capitalize {
+    text-transform: capitalize;
+}
+
+/* Search */
+
+#search-albums-input,
+#search-artists-input {
+    border: 1px solid rgb(63, 63, 63);
+    border-radius: 3px;
+    padding: 1.5em;
+    padding-left: 2.2em;
+    background-color: #EFEFEF;
+    background: url("./images/icons/search-solid.svg");
+    background-repeat: no-repeat;
+    background-size: 1.5em;
+    background-position: left center;
+    background-position-x: 5px;
+    background-color: #EFEFEF;
+    display: flex;
+    transition: margin 500ms, transform 500ms;
+}
+
+#search-albums-icon.spinning,
+#search-artists-icon.spinning{
+    transition-duration: 2000ms;
+    -ms-transform:  rotate(360deg);     
+    -webkit-transform:  rotate(360deg); 
+    transform: rotate(360deg);
+}
+
+.margin-off {
+    margin: -1em auto;
+    transform: scale(1, 0) !important;
+}
+
+.margin-on {
+    margin: 1em auto 2em auto;
+    transform: scale(1, 1) !important;
+}
+
+/* Button Load More*/
+
+.load-more {
+    text-align: center;
+    padding: 2em 0;
+}
+
+.load-more > a {
+    text-decoration: none;
+    padding: 1.5em;
+    border: 1px solid black;
+    text-transform: uppercase;
+    color: rgb(63, 63, 63);
+    border-radius: 3px;
+    font-size: .7em;
+    display: inline-block;
+}
+
+.load-more > a:hover {
+    opacity: .6;
+}
+
+/* Load more album tooltip warning */
+
+#albums-load-more.warning {
+    position: relative;
+    cursor: not-allowed;
+}
+
+#albums-load-more.warning::after {
+    content: attr(data-error);
+    display: block;
+    position: absolute;
+    background-color: rgb(63, 63, 63, .9);
+    padding: 1em 3em;
+    color: white;
+    border-radius: 5px;
+    font-size: .8em;
+    top: 100%;
+    left: -50%;
+    white-space: nowrap;
+    transform: scale(0);
+    transition: transform ease-out 150ms;
+    margin-top: .1em;
+}
+
+#albums-load-more.warning:hover::after {
+    transform: scale(1);
+}
+
+
+/* Generic one */
+
+#generic-one {
+    background-color: #EFEFEF;
+    padding: 0;
+    height: auto;
+    padding-top: 2em;
+}
+
+#generic-one > * {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+#generic-one > div > div {
+    width: 100%;
+    margin-left: 0;
+}
+
+#generic-one > div > img {
+    top: 0px;
+    height: 250px;
+    max-height: 300px;
+    position: relative;
+    order: 2;
+}
+
+/* Artists */
+
+#artists {
+    padding-top: 2em;
+}
+
+#artists > div > p, 
+#artists > div > h2 {
+    text-align: center;
+}
+
+#artists-images,
+#albums-images {
+    display: flex;
+    justify-content: center;
+    flex-flow: wrap;
+}
+
+
+#artists-images > div,
+#albums-images > div {
+    margin-bottom: .8em;
+}
+
+#artists-images > div > p,
+#albums-images > div > p {
+    margin: .5em 0;
+    font-size: .7em;
+}
+
+.zero-opacity {
+    opacity: 0;
+    transition: opacity 350ms ease-in-out;
+}
+
+/* About */
+
+#about {
+    background-color: rgb(0, 0, 0, 0.8);
+    padding: 2em 0;
+    color: #fff;
+}
+
+#about h3, h4, h5, p {
+    padding: 0;
+    margin: 1.5em 0;
+ }
+
+ #about p {
+     font-size: .9em;
+ }
+
+#about h3, h4 {
+    text-align: center;
+}
+
+/* For small screen, up to 700px */
+@media (min-width: 700px) {
+
+    /* Introduction */ 
+    .content-wrapper {
+        display: flex;
+    }
+    
+    .content-wrapper > div {
+        width: 80%;
+        flex-direction: column;
+    }
+
+    .content-wrapper > div + div {
+        margin-left: 4%;
+    }
+    
+    .content-wrapper p {
+        margin-left: 0;
+    }
+    
+    .content-wrapper i {
+        text-align: center;
+        align-self: center;
+        margin-right: 0;
+    }
+
+    #introduction i {
+        width: 100%;
+    }
+    
+    #introduction p {
+        width: 100%;
+    }
+
+    /* Generic one */
+
+    #generic-one {        
+        padding: 0;
+        height: 220px;
+    }
+
+    #generic-one > * {
+        display: flex;
+        flex-direction: row;
+    }
+
+    #generic-one > div > div {
+        width: 70%;
+        margin-left: auto;
+        order: 2;
+    }
+
+    #generic-one > div > img {
+        top: -30px;
+        height: 250px;
+        position: relative;
+        order: 1;
+    }
+}
