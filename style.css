@@ -502,6 +502,20 @@ p, li, a, span, input {
     text-align: center;
 }
 
+#about .content-wrapper > div {
+    flex-direction: column;
+}
+
+#about p {
+    margin-left: 0;
+}
+
+/* Footer */
+#about p {
+    margin: .5em 0;
+    opacity: .9;
+}
+
 /* For small screen, up to 700px */
 @media (min-width: 700px) {
 
@@ -560,11 +574,5 @@ p, li, a, span, input {
         height: 250px;
         position: relative;
         order: 1;
-    }
-
-    /* Footer */
-    #about p {
-        margin: .5em 0;
-        opacity: .9;
     }
 }
