@@ -561,4 +561,10 @@ p, li, a, span, input {
         position: relative;
         order: 1;
     }
+
+    /* Footer */
+    #about p {
+        margin: .5em 0;
+        opacity: .9;
+    }
 }
