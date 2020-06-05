@@ -5,12 +5,13 @@ $(document).ready(function () {
     let completeAlbumsArray = [];
     let beingSearched;
     let allSelected = false;
+    const url = ""
 
     // records shown at a time depending on client width
     const recordsToShow = (window.innerWidth > 1000) ? 6 : 4;
 
-    makeFetchApiCall("http://localhost:9999/artists", "artists");
-    makeFetchApiCall("http://localhost:9999/albums", "albums");
+    makeFetchApiCall("https://tranquil-forest-25067.herokuapp.com/artists", "artists");
+    makeFetchApiCall("https://tranquil-forest-25067.herokuapp.com/albums", "albums");
 
     function makeFetchApiCall(url, type, loadMore = false, typeSearch = false, loadShrinkType = false) {
         fetch(url, { mode: 'cors' })
@@ -120,7 +121,7 @@ $(document).ready(function () {
                 // if list of artists in server was seen, loads related artists, according to a random artist in server
                 if (artists.length == 0) {
                     const random = Math.floor(Math.random() * (completeArtistsArray.length - recordsToShow));
-                    makeFetchApiCall("http://localhost:9999//artist-related?id=" + completeArtistsArray[random].id, "artists", "load-more")
+                    makeFetchApiCall("https://tranquil-forest-25067.herokuapp.com//artist-related?id=" + completeArtistsArray[random].id, "artists", "load-more")
                     document.getElementById("artists-load-more").text = "More artists from Spotify";
                 } else {
                     // To remove initial print duplication on new artists => artists-more
@@ -208,7 +209,7 @@ $(document).ready(function () {
         if (beingSearched) {
             beingSearched = false;
             // If searching and switch to a category
-            makeFetchApiCall("http://localhost:9999/" + typeOfObject, typeOfObject, false, false, typeOfOperation);
+            makeFetchApiCall("https://tranquil-forest-25067.herokuapp.com/" + typeOfObject, typeOfObject, false, false, typeOfOperation);
             document.getElementById(typeOfObject + "-load-more").classList.remove("warning");
         } else {
             const elementToIterate = (typeOfObject == "albums") ? completeAlbumsArray : completeArtistsArray;
@@ -230,7 +231,7 @@ $(document).ready(function () {
                     allSelected = true;
                 } else {
                     // Shuffle
-                    makeFetchApiCall("http://localhost:9999/" + typeOfObject, typeOfObject);
+                    makeFetchApiCall("https://tranquil-forest-25067.herokuapp.com/" + typeOfObject, typeOfObject);
                     document.getElementById(typeOfObject + "-load-more").classList.remove("warning");
                     setTimeout(() => {
                         document.getElementById("all-" + typeOfObject + "-icon").className = "fas fa-border-all fa-2x";
@@ -282,10 +283,10 @@ $(document).ready(function () {
         inputValue = sanitizeString(inputValue).replace(/ /g, "");
         timeout = setTimeout(function () {
             if (object == "albums") {
-                const url = `http://localhost:9999/search?q=${inputValue}&type=album`;
+                const url = `https://tranquil-forest-25067.herokuapp.com/search?q=${inputValue}&type=album`;
                 makeFetchApiCall(url, "search", false, object, false);
             } else {
-                const url = `http://localhost:9999/search?q=${inputValue}&type=artist`;
+                const url = `https://tranquil-forest-25067.herokuapp.com/search?q=${inputValue}&type=artist`;
                 makeFetchApiCall(url, "search", false, object, false);
             }
             switchTo.className = "fas fa-search fa-2x";
