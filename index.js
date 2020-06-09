@@ -5,7 +5,6 @@ $(document).ready(function () {
     let completeAlbumsArray = [];
     let beingSearched;
     let allSelected = false;
-    const url = ""
 
     // records shown at a time depending on client width
     const recordsToShow = (window.innerWidth > 1000) ? 6 : 4;
@@ -18,6 +17,10 @@ $(document).ready(function () {
             .then((res) => res.ok ? res.json() : console.log("Error in first call" + res))
             .then((response) => {
                 if (response.error) console.log("error retrieving information");
+                if (type == "token") {
+                    console.log(response);
+                    return;
+                }
                 if (!loadMore) {
                     if (type == "search") {
                         const objectFromAPI = (typeSearch == "albums") ? response.data.albums.items : JSON.parse(response.data)["artists"]["items"];
@@ -369,4 +372,7 @@ $(document).ready(function () {
         str = str.replace(/[^a-z0-9áéíóúñü \.,_-]/gim, "");
         return str.trim();
     }
+
+    const url = `https://tranquil-forest-25067.herokuapp.com/refresh-token`;
+    setInterval(() => makeFetchApiCall(url, "token"), 1700000)
 });
