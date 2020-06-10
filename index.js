@@ -17,34 +17,48 @@ $(document).ready(function () {
             .then((res) => res.ok ? res.json() : console.log("Error in first call" + res))
             .then((response) => {
                 if (response.error) console.log("error retrieving information");
-                if (type == "token") {
-                    console.log(response);
-                    return;
-                }
-                if (!loadMore) {
-                    if (type == "search") {
-                        const objectFromAPI = (typeSearch == "albums") ? response.data.albums.items : JSON.parse(response.data)["artists"]["items"];
-                        deconstructResult(objectFromAPI, typeSearch, true);
-                    } else {
-                        // Initial request
-                        const objectFromAPI = JSON.parse(response.data);
-                        deconstructResult(objectFromAPI, type);
-                    }
+                // login hasn't been made (website went idle)
+                if (!response.data) {
+                    makeFetchApiCall("https://tranquil-forest-25067.herokuapp.com/login", "login");
                 } else {
-                    // Load more artists requests
-                    const objectFromAPI = response.data.artists;
-                    const objectFromZeroToMax = objectFromAPI.slice(0, recordsToShow);
-                    objectFromZeroToMax.forEach((object) => {
-                        const domElement = document.getElementById("artists-images");
-                        processRequest(type, domElement, object)
-                    });
-                    artists = objectFromAPI;
-                    completeArtistsArray.filter((artist) => !artists.includes(artist.id));
-                    completeArtistsArray
+                    // after login, makes requests again
+                    if (type == "login") {
+                        setTimeout(() => {
+                            makeFetchApiCall("https://tranquil-forest-25067.herokuapp.com/artists", "artists");
+                            makeFetchApiCall("https://tranquil-forest-25067.herokuapp.com/albums", "albums");                        
+                        }, 2000);
+                    }
+                    // refresh token
+                    if (type == "token") {
+                        console.log(response);
+                        return;
+                    }
+                    if (!loadMore) {
+                        if (type == "search") {
+                            const objectFromAPI = (typeSearch == "albums") ? response.data.albums.items : JSON.parse(response.data)["artists"]["items"];
+                            deconstructResult(objectFromAPI, typeSearch, true);
+                        } else {
+                            // Initial request
+                            const objectFromAPI = JSON.parse(response.data);
+                            deconstructResult(objectFromAPI, type);
+                        }
+                    } else {
+                        // Load more artists requests
+                        const objectFromAPI = response.data.artists;
+                        const objectFromZeroToMax = objectFromAPI.slice(0, recordsToShow);
+                        objectFromZeroToMax.forEach((object) => {
+                            const domElement = document.getElementById("artists-images");
+                            processRequest(type, domElement, object)
+                        });
+                        artists = objectFromAPI;
+                        completeArtistsArray.filter((artist) => !artists.includes(artist.id));
+                        completeArtistsArray
+                    }
+                    if (loadShrinkType) {
+                        loadShrink(loadShrinkType, type);
+                    }
                 }
-                if (loadShrinkType) {
-                    loadShrink(loadShrinkType, type);
-                }
+
             })
             .catch((error) => console.log("error: " + error));
     }
@@ -53,7 +67,7 @@ $(document).ready(function () {
         const objectToUse = (search) ? objectFromAPI : objectFromAPI[type];
 
         // starts at a random position, if being searched, starts at zero
-        const random = beingSearched? 0: Math.floor(Math.random() * (objectToUse.length - recordsToShow));
+        const random = beingSearched ? 0 : Math.floor(Math.random() * (objectToUse.length - recordsToShow));
         // goes from random until the value specified above
         const objectFromRandomToMax = objectToUse.slice(random, (random + recordsToShow));
 
@@ -229,7 +243,7 @@ $(document).ready(function () {
                         document.getElementById(typeOfObject + "-load-more").className = "warning", 500;
                         if (typeOfObject == "artists") {
                             document.getElementById(typeOfObject + "-load-more").text = `More ${typeOfObject} from Spotify`;
-                        } 
+                        }
                     }, 300);
                     allSelected = true;
                 } else {
